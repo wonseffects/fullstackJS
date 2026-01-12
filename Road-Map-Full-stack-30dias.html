@@ -1,0 +1,283 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Fullstack - JavaScript + PHP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .code-block { background: #1e293b; color: #f8fafc; border-radius: 0.5rem; padding: 1rem; overflow-x: auto; font-family: monospace; font-size: 0.85rem; }
+        .tab-active { border-color: #4f46e5; color: #4f46e5; background-color: #f5f3ff; }
+        .section-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .section-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <!-- Header -->
+    <header class="bg-indigo-600 text-white py-12 px-4 shadow-lg text-center">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight">🔰 Guia Fullstack JS + PHP</h1>
+            <p class="text-indigo-100 text-lg md:text-xl font-medium max-w-2xl mx-auto">Domine o desenvolvimento web em 4 semanas com foco no que é usado em sistemas reais.</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white border-b sticky top-0 z-50 shadow-sm">
+        <div class="max-w-4xl mx-auto flex overflow-x-auto no-scrollbar" id="week-tabs">
+            <!-- Tabs will be generated here -->
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto w-full p-4 md:p-10 min-h-screen">
+        <div id="week-info" class="mb-12 text-center md:text-left animate-fade-in">
+            <!-- Week title and summary will be generated here -->
+        </div>
+
+        <div id="content-area" class="space-y-12">
+            <!-- Sections will be generated here -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+            <p class="font-semibold text-white mb-2">Roadmap Profissional 2024</p>
+            <p class="text-sm">Desenvolva habilidades práticas, não apenas teoria.</p>
+            <div class="mt-8 pt-8 border-t border-slate-800 text-xs text-slate-500">
+                Criado para transformar iniciantes em desenvolvedores capazes de criar sistemas SaaS.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const roadmapData = [
+            {
+                number: 1,
+                title: "Fundamentos que você realmente usa",
+                summary: "O primeiro passo é dominar a interação básica com o navegador. Sem frescuras, apenas o que você vai digitar todo dia.",
+                sections: [
+                    {
+                        title: "📌 1. Manipulação do DOM",
+                        subtitle: "A arte de controlar o HTML via JavaScript.",
+                        concepts: [
+                            { name: "document.getElementById()", desc: "Pega um elemento pelo ID único.", code: "const nome = document.getElementById('nome_usuario');" },
+                            { name: "document.querySelector()", desc: "Pega elementos usando seletores CSS (#id, .classe, tag).", code: "const btn = document.querySelector('.btn-salvar');" },
+                            { name: ".innerText", desc: "Troca apenas o texto de dentro do elemento.", code: "div.innerText = 'Novo Texto';" },
+                            { name: ".innerHTML", desc: "Troca o conteúdo permitindo tags HTML.", code: "div.innerHTML = '<strong>Negrito!</strong>';" },
+                            { name: ".value", desc: "Acessa o que foi digitado em um input.", code: "let email = document.querySelector('#email').value;" }
+                        ],
+                        training: ["Pegar dados de input", "Mostrar mensagens na tela", "Atualizar divs dinamicamente"]
+                    },
+                    {
+                        title: "📌 2. Eventos",
+                        subtitle: "Como o código percebe as ações do usuário.",
+                        concepts: [
+                            { name: "addEventListener('click')", desc: "Dispara quando alguém clica no elemento.", code: "btn.addEventListener('click', () => { ... });" },
+                            { name: "addEventListener('submit')", desc: "Captura o envio do formulário (para validar antes de enviar).", code: "form.addEventListener('submit', (e) => { e.preventDefault(); });" },
+                            { name: "addEventListener('change')", desc: "Dispara quando um valor de select/checkbox muda.", code: "select.addEventListener('change', (e) => { ... });" }
+                        ],
+                        training: ["Clique em botão para somar contador", "Envio de formulário com validação", "Seleção de opções que mudam a cor da página"]
+                    },
+                    {
+                        title: "📌 3. Variáveis e Objetos",
+                        subtitle: "Armazenando informações de forma organizada.",
+                        concepts: [
+                            { name: "let e const", desc: "let para o que muda, const para o que é fixo.", code: "const pi = 3.14; let status = 'ativo';" },
+                            { name: "{ } Objetos", desc: "Agrupa dados de uma mesma coisa.", code: "const cliente = { nome: 'João', telefone: '9999' };" },
+                            { name: "[ ] Arrays", desc: "Listas de coisas.", code: "const produtos = ['Arroz', 'Feijão', 'Batata'];" }
+                        ],
+                        training: ["Criar objeto cliente", "Criar lista de objetos", "Acessar propriedades do objeto"]
+                    }
+                ]
+            },
+            {
+                number: 2,
+                title: "Comunicação com PHP (Fetch + API)",
+                summary: "Aqui a mágica acontece. Você vai aprender a enviar dados do navegador para o servidor sem dar F5.",
+                sections: [
+                    {
+                        title: "📌 4. Fetch API",
+                        subtitle: "O mensageiro entre o Front-end e o Back-end.",
+                        concepts: [
+                            { name: "fetch()", desc: "Inicia o pedido para uma URL.", code: "fetch('api.php', { method: 'POST', body: dados });" },
+                            { name: ".then()", desc: "O que fazer quando a resposta chegar.", code: ".then(res => res.json())" },
+                            { name: "async / await", desc: "Forma moderna de esperar o servidor responder.", code: "const res = await fetch('api.php');" },
+                            { name: "res.json()", desc: "Converte a resposta do PHP para algo que o JS entenda.", code: "const dados = await res.json();" }
+                        ],
+                        training: ["Enviar dados para PHP", "Receber JSON do servidor", "Mostrar resposta no HTML"]
+                    },
+                    {
+                        title: "📌 5. Trabalhar com JSON",
+                        subtitle: "A linguagem universal de dados.",
+                        concepts: [
+                            { name: "JSON.stringify()", desc: "Transforma objeto JS em texto para enviar ao PHP.", code: "const texto = JSON.stringify(meuObjeto);" },
+                            { name: "JSON.parse()", desc: "Transforma o texto que veio do PHP em objeto JS.", code: "const obj = JSON.parse(textoVindoServidor);" }
+                        ],
+                        training: ["Mandar dados de cadastro", "Receber listas de produtos", "Preencher tabelas dinamicamente"]
+                    }
+                ]
+            },
+            {
+                number: 3,
+                title: "Sistemas Reais",
+                summary: "Hora de aplicar o conhecimento em fluxos reais que todo sistema possui.",
+                sections: [
+                    {
+                        title: "📌 6. Login sem recarregar",
+                        subtitle: "Autenticação moderna e rápida.",
+                        concepts: [
+                            { name: "Login via fetch", desc: "Mandar usuário/senha e receber OK ou ERRO.", code: "// Envia dados via POST e redireciona se OK" },
+                            { name: "Verificar sessão", desc: "Checar se o usuário ainda está logado ao entrar na página.", code: "if(!logado) { fecharApp(); }" }
+                        ],
+                        training: ["Criar tela de login", "Redirecionar com JS", "Mostrar mensagem de 'Usuário Incorreto'"]
+                    },
+                    {
+                        title: "📌 7. CRUD em JS + PHP",
+                        subtitle: "O coração de qualquer aplicação administrativa.",
+                        concepts: [
+                            { name: "Listar / Cadastrar", desc: "CRUD completo sem dar refresh na página.", code: "// Create, Read, Update, Delete" }
+                        ],
+                        training: ["Cadastrar item", "Listar itens do banco", "Editar e Excluir sem reload"]
+                    },
+                    {
+                        title: "📌 8. Modais e Interfaces",
+                        subtitle: "Melhorando a experiência visual do usuário.",
+                        concepts: [
+                            { name: "classList.add/remove", desc: "Adiciona ou remove classes CSS (ex: para mostrar modal).", code: "modal.classList.add('active');" },
+                            { name: "style.display", desc: "Muda o CSS diretamente.", code: "popup.style.display = 'block';" }
+                        ],
+                        training: ["Modal de agendamento", "Popups de aviso", "Mensagens de erro customizadas"]
+                    }
+                ]
+            },
+            {
+                number: 4,
+                title: "Profissionalização (Nível SaaS)",
+                summary: "Organize seu projeto para que ele possa crescer e ser seguro.",
+                sections: [
+                    {
+                        title: "📌 9. Organização de código",
+                        subtitle: "Código limpo é código fácil de manter.",
+                        concepts: [
+                            { name: "Functions", desc: "Isolar lógicas repetidas.", code: "function apiCall(url) { ... }" },
+                            { name: "Modules", desc: "Separar arquivos (um para API, outro para UI).", code: "export const save = () => { ... }" }
+                        ],
+                        training: ["Separar lógicas de API e UI", "Criar funções reutilizáveis"]
+                    },
+                    {
+                        title: "📌 10. Segurança",
+                        subtitle: "Proteja seu sistema contra acessos indevidos.",
+                        concepts: [
+                            { name: "Enviar Token", desc: "Mandar chave de acesso no cabeçalho (Headers).", code: "headers: { 'Authorization': token }" },
+                            { name: "Bloquear ações", desc: "Esconder botões se o usuário não tiver permissão.", code: "if(role !== 'admin') btn.remove();" }
+                        ],
+                        training: ["Verificar login", "Bloquear botões de admin para usuários comuns"]
+                    },
+                    {
+                        title: "📌 11. Projeto Final",
+                        subtitle: "O teste de fogo para virar Fullstack.",
+                        concepts: [
+                            { name: "Sistema de Agendamento", desc: "Um app completo com todas as funções acima.", code: "// Login + Cadastro + Dashboard" }
+                        ],
+                        training: ["Construir sistema de agendamento completo"]
+                    }
+                ]
+            }
+        ];
+
+        let currentWeek = 1;
+
+        function renderTabs() {
+            const container = document.getElementById('week-tabs');
+            container.innerHTML = roadmapData.map(week => `
+                <button onclick="changeWeek(${week.number})" class="flex-1 py-4 px-6 text-sm font-bold whitespace-nowrap border-b-2 transition-all duration-300 ${currentWeek === week.number ? 'tab-active' : 'border-transparent text-slate-500 hover:text-slate-700 hover:bg-slate-50'}">
+                    SEMANA ${week.number}
+                </button>
+            `).join('');
+        }
+
+        function renderContent() {
+            const week = roadmapData.find(w => w.number === currentWeek);
+            
+            // Render Week Header
+            document.getElementById('week-info').innerHTML = `
+                <h2 class="text-3xl font-extrabold text-slate-800 mb-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
+                    Semana ${week.number}: ${week.title}
+                </h2>
+                <p class="text-slate-600 text-lg leading-relaxed max-w-3xl animate-in fade-in slide-in-from-bottom-4 duration-700">
+                    ${week.summary}
+                </p>
+            `;
+
+            // Render Sections
+            const contentArea = document.getElementById('content-area');
+            contentArea.innerHTML = week.sections.map((section, idx) => `
+                <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden section-card animate-in fade-in slide-in-from-bottom-8 duration-500" style="animation-delay: ${idx * 100}ms">
+                    <div class="bg-slate-50 px-6 py-5 border-b border-slate-200">
+                        <h3 class="text-xl font-bold text-slate-800">${section.title}</h3>
+                        <p class="text-slate-500 text-sm mt-1">${section.subtitle}</p>
+                    </div>
+                    
+                    <div class="p-6 md:p-8 space-y-8">
+                        <div>
+                            <h4 class="text-xs font-black text-indigo-600 uppercase tracking-widest mb-6 flex items-center">
+                                <span class="mr-2">⚡</span> APRENDA:
+                            </h4>
+                            <div class="grid gap-8">
+                                ${section.concepts.map(concept => `
+                                    <div class="group">
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <div class="w-1.5 h-1.5 rounded-full bg-indigo-500"></div>
+                                            <h5 class="font-bold text-slate-800">${concept.name}</h5>
+                                        </div>
+                                        <p class="text-slate-600 text-sm mb-3 ml-4">${concept.desc}</p>
+                                        <div class="ml-4">
+                                            <div class="code-block">
+                                                <code>${concept.code}</code>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <div class="bg-emerald-50 p-6 rounded-xl border border-emerald-100">
+                            <h4 class="text-xs font-black text-emerald-700 uppercase tracking-widest mb-4 flex items-center">
+                                <span class="mr-2">🛠️</span> TREINAR:
+                            </h4>
+                            <ul class="space-y-3">
+                                ${section.training.map(item => `
+                                    <li class="flex items-start gap-3 text-sm text-emerald-900 font-medium">
+                                        <svg class="w-5 h-5 text-emerald-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        ${item}
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            `).join('');
+        }
+
+        function changeWeek(num) {
+            currentWeek = num;
+            renderTabs();
+            renderContent();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Initialize
+        renderTabs();
+        renderContent();
+    </script>
+</body>
+</html>
